@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Описание товара, цена, размерная сетка и форма заявки.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://tzutira.github.io/kr1-html-css-shop/images/preview.jpg">
+  <meta property="og:image:alt" content="Обложка учебного интернет-магазина">
+  <meta property="og:title" content="Товар — Artel Studio">
+  <meta property="og:description" content="Описание товара, цена, размерная сетка и форма заявки.">
+  <title>Товар — Artel Studio</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body id="top">
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-header__logo" href="index.html" aria-label="Artel Studio — главная"><img class="site-header__logo-image" src="images/preview.jpg" alt="Artel Studio" width="210" height="58"></a>
+
+      <nav class="site-nav" aria-label="Основная навигация">
+        <ul class="site-nav__list">
+          <li class="site-nav__item"><a class="site-nav__link" href="index.html">Главная</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="catalog.html">Каталог</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="order.html">Заявка</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="contacts.html">Контакты</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="index.html#advantages">Преимущества</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="index.html#popular">Популярные товары</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="index.html#delivery">Доставка и возврат</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main class="site-main">
+<nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="index.html">Главная</a> / <a href="catalog.html">Каталог</a> / <span aria-current="page" id="product-breadcrumb">Широкие джинсы Coated Noir</span></nav>
+<section class="section product-detail"><div class="product-detail__visual"><img class="product-detail__image" id="product-image" src="images/black-coated-wide-leg-jeans.jpg" alt="Широкие джинсы Coated Noir, вид спереди" width="1200" height="1600"></div>
+<div class="product-detail__content"><p class="eyebrow">Коллекция одежды</p><h1 id="product-title">Широкие джинсы Coated Noir</h1><p id="product-description">Высокая посадка, широкие штанины и чёрный деним с покрытием. Выразительная основа образа.</p><p class="product-detail__price" id="product-price">5 900 ₽</p><button class="button button--primary product-card__button" type="button" data-product="Широкие джинсы Coated Noir" id="product-order-button">Заказать</button><p><a href="index.html#delivery">Условия доставки и возврата</a></p></div></section>
+<section class="section"><h2>Характеристики</h2><table class="product-table"><caption>Параметры выбранной вещи</caption><thead><tr><th scope="col">Параметр</th><th scope="col">Значение</th></tr></thead><tbody><tr><th scope="row">Цвет</th><td id="product-color">Чёрный</td></tr><tr><th scope="row">Категория</th><td id="product-category">Джинсы</td></tr><tr><th scope="row">Размеры</th><td>XS, S, M, L, XL</td></tr><tr><th scope="row">Заказ</th><td>Заявка с выбором размера</td></tr></tbody></table></section>
+
+
+  </main>
+  <footer class="site-footer">
+    <div class="site-footer__inner"><p class="site-footer__text">&copy; 2026 Artel Studio · Учебный магазин одежды</p>
+    <a href="index.html#delivery">Доставка и возврат</a><a href="contacts.html">Связаться с нами</a></div>
+  </footer>
+  <a class="back-to-top" href="#top" aria-label="Наверх">↑</a>
+  <dialog class="order-dialog" id="order-dialog" aria-labelledby="order-dialog-title">
+    <h2 class="order-dialog__title" id="order-dialog-title">Оформление заявки</h2>
+    <form class="order-form" id="order-form" action="#" method="post" novalidate>
+    <div class="order-form__field">
+      <label class="order-form__label" for="selected-product">Товар</label>
+      <input class="order-form__input" id="selected-product" name="selected-product" type="text" readonly placeholder="Консультация по подбору одежды">
+    </div>
+
+    <div class="order-form__field">
+      <label class="order-form__label" for="order-name">Имя</label>
+      <input class="order-form__input" id="order-name" name="name" type="text" placeholder="Введите ваше имя" minlength="2" autocomplete="given-name" required>
+    </div>
+
+    <div class="order-form__field">
+      <label class="order-form__label" for="order-email">E-mail</label>
+      <input class="order-form__input" id="order-email" name="email" type="email" placeholder="example@mail.ru" autocomplete="email" required>
+    </div>
+
+    <div class="order-form__field">
+      <label class="order-form__label" for="order-phone">Телефон</label>
+      <input class="order-form__input" aria-describedby="order-phone-hint" id="order-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+7 (900) 000-00-00" pattern="^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$" required>
+      <small class="order-form__hint" id="order-phone-hint">Формат: +7 (900) 000-00-00</small>
+    </div>
+
+    <div class="order-form__field">
+        <label class="order-form__label" for="order-size">Размер</label>
+        <select class="order-form__select" id="order-size" name="size" required>
+          <option value="">Выберите размер</option>
+          <option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option>
+          <option value="help">Нужна помощь с размером</option>
+        </select>
+      </div>
+
+    <div class="order-form__field">
+      <label class="order-form__label" for="order-topic">Тема заявки</label>
+      <select class="order-form__select" id="order-topic" name="topic" required>
+        <option value="">Выберите тему</option>
+        <option value="product">Заказ товара</option>
+        <option value="consultation">Консультация</option>
+        <option value="delivery">Доставка</option>
+      </select>
+    </div>
+
+    <div class="order-form__field">
+      <label class="order-form__label" for="order-comment">Комментарий</label>
+      <textarea class="order-form__textarea" id="order-comment" name="comment" rows="4" placeholder="Укажите дополнительную информацию"
+      ></textarea>
+    </div>
+
+    <div class="order-form__field order-form__field--checkbox">
+      <label class="order-form__label" for="order-agreement">
+        <input class="order-form__checkbox" id="order-agreement" name="agreement" type="checkbox" required>
+        Я согласен на обработку данных для ответа на заявку
+      </label>
+    </div>
+
+    <p class="order-form__hint">Учебная форма: данные не отправляются на сервер.</p>
+    <div class="order-form__actions">
+      <button class="button button--secondary" type="button" id="close-order-dialog">Закрыть</button>
+      <button class="button button--primary" type="submit">Отправить заявку</button>
+    </div>
+    </form>
+  </dialog>
+  <p class="success-message" id="success-message" role="status" hidden>Заявка проверена. Это учебная демонстрация — данные не отправлены.</p>
+
+</body>
+</html>
