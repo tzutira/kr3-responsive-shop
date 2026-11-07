@@ -1,0 +1,218 @@
+/* Предсказуемый расчёт размеров. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Изображения не выходят за ширину родителя. */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Общие отступы основной области. */
+.site-main {
+  padding: 16px;
+}
+
+/* На телефоне высокая закреплённая шапка мешает чтению. */
+.site-header {
+  position: static;
+}
+
+/* Сначала мобильная раскладка шапки. */
+.site-header__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.site-nav {
+  width: 100%;
+}
+
+.site-nav__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 4px;
+  margin: 0;
+}
+
+.site-nav__link {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 10px 12px;
+}
+
+/* Первый экран: одна колонка на телефоне. */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  gap: 24px;
+
+  width: min(100%, var(--container-width));
+  height: auto;
+  margin-inline: auto;
+  padding: 24px;
+
+  background-image: none;
+}
+
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  min-width: 0;
+}
+
+.hero__title {
+  margin: 0;
+  font-size: clamp(32px, 5vw, 64px);
+  line-height: 1.05;
+  overflow-wrap: anywhere;
+}
+
+.hero__description {
+  max-width: 48ch;
+  margin: 0;
+}
+
+.hero__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  max-width: 100%;
+}
+
+.hero__media {
+  display: block;
+  min-width: 0;
+}
+
+.hero__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: contain;
+}
+
+/* От 900px текст и изображение располагаются рядом. */
+@media (min-width: 900px) {
+  .hero {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* На широком экране логотип и навигация идут в строку. */
+@media (min-width: 1200px) {
+  .site-header__inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .site-nav {
+    width: auto;
+  }
+}
+
+/* Mobile First: каталог, товар, формы и таблица. */
+.section, .catalog-layout, .breadcrumbs, .success-message { width: 100%; }
+.product-card__title, .product-card__description, .product-detail__content,
+.site-footer__text { overflow-wrap: anywhere; }
+.products-grid, .catalog-layout .products-grid {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
+}
+.product-card { min-width: 0; }
+.product-card__actions { gap: 12px; }
+.product-card__button, .product-card__details {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+.catalog-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "filters" "products";
+  gap: 24px;
+}
+.catalog-filters, .catalog-layout__products, .catalog-filters__group { min-width: 0; }
+.catalog-filters__input { width: 100%; min-width: 0; min-height: 44px; }
+.product-detail { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+.product-detail__visual, .product-detail__content { min-width: 0; }
+.product-detail__visual { min-height: 0; padding: 0; }
+.product-detail__image { width: 100%; height: auto; object-fit: contain; }
+.info-grid { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+
+/* Отдельная форма расширяется до двух колонок; диалог остаётся одноколоночным. */
+.order-page .order-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+}
+.order-page .order-form__field { min-width: 0; margin-bottom: 0; }
+.order-form__input, .order-form__select, .order-form__textarea {
+  width: 100%; min-width: 0; min-height: 44px;
+}
+.order-form__textarea { min-height: 120px; resize: vertical; }
+.order-form__checkbox { width: auto; }
+.order-form__field--checkbox .order-form__label { min-height: 44px; }
+.order-form__actions { display: flex; flex-direction: column; gap: 12px; }
+.order-form__actions .button { min-height: 44px; text-align: center; }
+.order-dialog {
+  width: min(calc(100% - 32px), 560px);
+  max-width: calc(100% - 32px);
+  max-height: calc(100vh - 32px);
+  max-height: calc(100dvh - 32px);
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* Прокрутка ограничена областью таблицы. */
+.table-scroll { width: 100%; max-width: 100%; overflow-x: auto; }
+.table-scroll:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 4px; }
+.product-table { width: 100%; min-width: 640px; }
+.site-footer__inner { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+/* На телефоне кнопка не закрывает содержимое. */
+.back-to-top { position: static; margin: 16px auto; flex-shrink: 0; }
+
+@media (min-width: 640px) {
+  .products-grid, .catalog-layout .products-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 768px) {
+  .order-page .order-form { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .order-page .order-form__field--wide,
+  .order-page .order-form__field--checkbox,
+  .order-page .order-form > .order-form__hint,
+  .order-page .order-form__actions { grid-column: 1 / -1; }
+  .order-form__actions { flex-direction: row; flex-wrap: wrap; }
+  .site-footer__inner { flex-direction: row; flex-wrap: wrap; align-items: center; }
+}
+@media (min-width: 900px) {
+  .product-detail { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; gap: 32px; }
+  .info-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (min-width: 1024px) {
+  .products-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .catalog-layout {
+    grid-template-columns: 220px minmax(0, 1fr);
+    grid-template-areas: "filters products";
+    align-items: start;
+  }
+  .catalog-layout .products-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 1280px) {
+  .catalog-layout .products-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .back-to-top { position: fixed; right: 16px; bottom: 16px; margin: 0; }
+}

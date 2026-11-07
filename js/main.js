@@ -1,78 +1,84 @@
 // набор данных связывает каталог, страницу товара и форму заявки
 const products = {
   "1": {
-    "id": "1",
-    "name": "Широкие джинсы Coated Noir",
-    "brand": "Pistola",
-    "description": "Высокая посадка, широкие штанины и чёрный деним с покрытием. Выразительная основа образа.",
-    "price": "5 900 ₽",
-    "color": "Чёрный",
-    "category": "Джинсы",
-    "image": "black-coated-wide-leg-jeans.jpg",
-    "badge": "Новинка"
+    id: "1",
+    name: "NOIR Archive 01",
+    brand: "NOIR",
+    description: "Чёрный циферблат, стальной корпус и сдержанная винтажная эстетика.",
+    price: "68 500 ₽",
+    color: "Чёрный",
+    category: "Ручной завод",
+    image: "watch-480.svg",
+    badge: ""
   },
+
   "2": {
-    "id": "2",
-    "name": "Бордовая куртка",
-    "brand": "Escala",
-    "description": "Прямой силуэт, отложной воротник и застёжка на молнии. Бордовый акцент для многослойных образов.",
-    "price": "12 900 ₽",
-    "color": "Бордовый",
-    "category": "Куртки",
-    "image": "burgundy-leather-jacket.jpg",
-    "badge": "Скидка"
+    id: "2",
+    name: "NOIR Archive 02",
+    brand: "NOIR",
+    description: "Серебристый циферблат и лаконичные часовые метки.",
+    price: "84 900 ₽",
+    color: "Серебристый",
+    category: "Автоматический механизм",
+    image: "watch-480.svg",
+    badge: ""
   },
+
   "3": {
-    "id": "3",
-    "name": "Кремовое поло на молнии",
-    "brand": "H&M",
-    "description": "Трикотаж в рубчик, короткий рукав и воротник с молнией. Светлая фактура для сочетания с широкими брюками.",
-    "price": "3 200 ₽",
-    "color": "Кремовый",
-    "category": "Поло",
-    "image": "cream-zip-polo.jpg",
-    "badge": "База"
+    id: "3",
+    name: "NOIR Archive 03",
+    brand: "NOIR",
+    description: "Светлый циферблат и строгие пропорции классических часов.",
+    price: "52 000 ₽",
+    color: "Белый",
+    category: "Кварцевый механизм",
+    image: "watch-480.svg",
+    badge: ""
   },
+
   "4": {
-    "id": "4",
-    "name": "Серые широкие брюки",
-    "brand": "Cph Muse",
-    "description": "Широкий крой и стрелки. Структурированный силуэт, который сочетается с рубашкой или свободным трикотажем.",
-    "price": "5 400 ₽",
-    "color": "Светло-серый",
-    "category": "Брюки",
-    "image": "grey-wide-leg-trousers.jpg",
-    "badge": ""
+    id: "4",
+    name: "NOIR Archive 04",
+    brand: "NOIR",
+    description: "Тёмный циферблат и выразительный силуэт стального корпуса.",
+    price: "96 000 ₽",
+    color: "Чёрный",
+    category: "Автоматический механизм",
+    image: "watch-480.svg",
+    badge: ""
   },
+
   "5": {
-    "id": "5",
-    "name": "Свитер Destroy Knit",
-    "brand": "Maison Mihara Yasuhiro",
-    "description": "Свободный серый трикотаж с намеренными потёртостями и рваными краями. Фактурный акцент коллекции.",
-    "price": "6 900 ₽",
-    "color": "Серый",
-    "category": "Трикотаж",
-    "image": "grey-distressed-sweater.jpg",
-    "badge": ""
+    id: "5",
+    name: "NOIR Archive 05",
+    brand: "NOIR",
+    description: "Серебристые детали и эстетика механических часов прошлых десятилетий.",
+    price: "73 500 ₽",
+    color: "Серебристый",
+    category: "Ручной завод",
+    image: "watch-480.svg",
+    badge: ""
   },
+
   "6": {
-    "id": "6",
-    "name": "Белая свободная рубашка",
-    "brand": "COS",
-    "description": "Свободная посадка, классический воротник и удлинённый округлый низ. Для самостоятельного образа или второго слоя.",
-    "price": "3 900 ₽",
-    "color": "Белый",
-    "category": "Рубашки",
-    "image": "white-relaxed-shirt.jpg",
-    "badge": "База"
+    id: "6",
+    name: "NOIR Archive 06",
+    brand: "NOIR",
+    description: "Минималистичный циферблат и спокойный повседневный характер.",
+    price: "45 000 ₽",
+    color: "Белый",
+    category: "Кварцевый механизм",
+    image: "watch-480.svg",
+    badge: ""
   }
 };
+
 const params = new URLSearchParams(window.location.search);
 const product = products[params.get('product')] || products['1'];
 const productTitle = document.getElementById('product-title');
 if (productTitle) {
   productTitle.textContent = product.name;
-  document.title = `${product.name} — Artel Studio`;
+  document.title = `${product.name} — NOIR`;
   document.getElementById('product-breadcrumb').textContent = product.name;
   document.getElementById('product-description').textContent = product.description;
   const price = document.getElementById('product-price');
@@ -82,7 +88,7 @@ if (productTitle) {
   document.getElementById('product-category').textContent = product.category;
   const image = document.getElementById('product-image');
   image.src = `images/${product.image}`;
-  image.alt = `${product.name}, вид спереди`;
+  image.alt = `Временная иллюстрация модели ${product.name}`;
   document.getElementById('product-order-button').dataset.product = product.name;
 }
 
