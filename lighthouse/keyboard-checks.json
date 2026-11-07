@@ -1,0 +1,94 @@
+{
+  "date": "2026-11-07",
+  "results": [
+    {
+      "page": "index",
+      "width": 360,
+      "checks": "headings, labels, ARIA references, overflow, skip-link, Tab focus: passed"
+    },
+    {
+      "page": "catalog",
+      "width": 360,
+      "checks": "headings, labels, ARIA references, overflow, skip-link, Tab focus: passed"
+    },
+    {
+      "page": "product",
+      "width": 360,
+      "checks": "headings, labels, ARIA references, overflow, skip-link, Tab focus: passed"
+    },
+    {
+      "page": "order",
+      "width": 360,
+      "checks": "headings, labels, ARIA references, overflow, skip-link, Tab focus: passed"
+    },
+    {
+      "page": "contacts",
+      "width": 360,
+      "checks": "headings, labels, ARIA references, overflow, skip-link, Tab focus: passed"
+    },
+    {
+      "page": "index",
+      "width": 768,
+      "checks": "headings, labels, ARIA references, overflow, skip-link, Tab focus: passed"
+    },
+    {
+      "page": "catalog",
+      "width": 768,
+      "checks": "headings, labels, ARIA references, overflow, skip-link, Tab focus: passed"
+    },
+    {
+      "page": "product",
+      "width": 768,
+      "checks": "headings, labels, ARIA references, overflow, skip-link, Tab focus: passed"
+    },
+    {
+      "page": "order",
+      "width": 768,
+      "checks": "headings, labels, ARIA references, overflow, skip-link, Tab focus: passed"
+    },
+    {
+      "page": "contacts",
+      "width": 768,
+      "checks": "headings, labels, ARIA references, overflow, skip-link, Tab focus: passed"
+    },
+    {
+      "page": "index",
+      "width": 1440,
+      "checks": "headings, labels, ARIA references, overflow, skip-link, Tab focus: passed"
+    },
+    {
+      "page": "catalog",
+      "width": 1440,
+      "checks": "headings, labels, ARIA references, overflow, skip-link, Tab focus: passed"
+    },
+    {
+      "page": "product",
+      "width": 1440,
+      "checks": "headings, labels, ARIA references, overflow, skip-link, Tab focus: passed"
+    },
+    {
+      "page": "order",
+      "width": 1440,
+      "checks": "headings, labels, ARIA references, overflow, skip-link, Tab focus: passed"
+    },
+    {
+      "page": "contacts",
+      "width": 1440,
+      "checks": "headings, labels, ARIA references, overflow, skip-link, Tab focus: passed"
+    },
+    {
+      "page": "index",
+      "checks": "dialog keyboard open, Tab containment, Escape/button return focus, invalid/valid submit: passed"
+    },
+    {
+      "page": "catalog",
+      "checks": "dialog keyboard open, Tab containment, Escape/button return focus, invalid/valid submit: passed"
+    },
+    {
+      "page": "product",
+      "checks": "dialog keyboard open, Tab containment, Escape/button return focus, invalid/valid submit: passed"
+    }
+  ],
+  "additional": "order validation and table keyboard scroll passed; Shift+Tab wraps from heading/first control to submit and Tab returns to first control in all three dialogs",
+  "javascriptErrors": []
+}
