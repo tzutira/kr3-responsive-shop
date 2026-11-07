@@ -14,7 +14,7 @@
   --color-primary-dark: #ffffff;
 
   --color-border: #353539;
-  --color-input-border: #686870;
+  --color-input-border: #888891;
 
   --color-surface: #141416;
   --color-header-footer: #101012;
@@ -953,3 +953,36 @@ html {
 .product-detail__content > .product-detail__price {
   color: var(--color-text);
 }
+
+/* Практическая №13: доступность клавиатурной навигации и форм. */
+.skip-link {
+  position: absolute;
+  top: 12px;
+  left: 16px;
+  z-index: 1000;
+  max-width: calc(100% - 32px);
+  padding: 12px 16px;
+  color: #111111;
+  background: #ffffff;
+  border-radius: 4px;
+  transform: translateY(calc(-100% - 20px));
+}
+.skip-link:focus { transform: translateY(0); }
+:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 4px;
+}
+/* Двухцветный фокус различим и на светлых кнопках, и на тёмном фоне. */
+a:focus-visible, button:focus-visible, input:focus-visible,
+select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 4px;
+  box-shadow: 0 0 0 4px #0b0b0d;
+}
+.order-form__input, .order-form__select, .order-form__textarea,
+.catalog-filters__input { border-color: var(--color-input-border); }
+.order-form__input--error, .order-form__select--error,
+.order-form__textarea--error { border-color: var(--color-danger); }
+input::placeholder, textarea::placeholder { color: var(--color-muted); opacity: 1; }
+.form-error { color: var(--color-danger); margin: 6px 0 0; font-size: 14px; }
+.order-dialog__title:focus { outline-offset: 4px; }

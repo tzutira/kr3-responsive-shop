@@ -15,6 +15,7 @@
 </head>
 
 <body id="top">
+  <a class="skip-link" href="#main">Перейти к основному содержимому</a>
   <header class="site-header">
     <div class="site-header__inner">
       <a class="site-header__logo" href="index.html" aria-label="NOIR — главная">NOIR</a>
@@ -33,7 +34,7 @@
       </nav>
     </div>
   </header>
-  <main class="site-main">
+  <main class="site-main" id="main" tabindex="-1">
     <nav class="breadcrumbs" aria-label="Хлебные крошки"><a class="breadcrumbs__link" href="index.html">Главная</a>
       <span class="breadcrumbs__current" aria-current="page">Заявка</span>
     </nav>
@@ -42,6 +43,7 @@
       <p>Выбери товар в каталоге или оставь запрос на подбор часов. Поля с обязательным вводом проверяются перед
         завершением.</p>
       <form class="order-form" id="order-form" action="#" method="post" novalidate>
+      <p class="order-form__hint">Поля со звёздочкой (*) обязательны. Учебная форма не отправляет данные на сервер.</p>
         <div class="order-form__field">
           <label class="order-form__label" for="selected-product">Товар</label>
           <select class="order-form__select" id="selected-product" name="selected-product">
@@ -56,46 +58,50 @@
         </div>
 
         <div class="order-form__field">
-          <label class="order-form__label" for="order-name">Имя</label>
+          <label class="order-form__label" for="order-name">Имя *</label>
           <input class="order-form__input" id="order-name" name="name" type="text" placeholder="Введите ваше имя"
-            minlength="2" autocomplete="given-name" required>
-        </div>
+            minlength="2" autocomplete="given-name" required aria-describedby="order-name-error">
+          <p class="form-error" id="order-name-error" hidden></p>
+      </div>
 
         <div class="order-form__field">
-          <label class="order-form__label" for="order-email">E-mail</label>
+          <label class="order-form__label" for="order-email">E-mail *</label>
           <input class="order-form__input" id="order-email" name="email" type="email" placeholder="example@mail.ru"
-            autocomplete="email" required>
-        </div>
+            autocomplete="email" required aria-describedby="order-email-error">
+          <p class="form-error" id="order-email-error" hidden></p>
+      </div>
 
         <div class="order-form__field">
-          <label class="order-form__label" for="order-phone">Телефон</label>
-          <input class="order-form__input" aria-describedby="order-phone-hint" id="order-phone" name="phone" type="tel"
+          <label class="order-form__label" for="order-phone">Телефон *</label>
+          <input class="order-form__input" aria-describedby="order-phone-hint order-phone-error" id="order-phone" name="phone" type="tel"
             autocomplete="tel" inputmode="tel" placeholder="+7 (900) 000-00-00"
             pattern="^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$" required>
           <small class="order-form__hint" id="order-phone-hint">Формат: +7 (900) 000-00-00</small>
-        </div>
+          <p class="form-error" id="order-phone-error" hidden></p>
+      </div>
 
         <div class="order-form__field">
           <label class="order-form__label" for="order-contact-method">
-            Предпочтительный способ связи
-          </label>
+            Предпочтительный способ связи *</label>
 
-          <select class="order-form__select" id="order-contact-method" name="contact-method" required>
+          <select class="order-form__select" id="order-contact-method" name="contact-method" required aria-describedby="order-contact-method-error">
             <option value="">Выберите способ связи</option>
             <option value="email">Электронная почта</option>
             <option value="phone">Телефонный звонок</option>
           </select>
-        </div>
+          <p class="form-error" id="order-contact-method-error" hidden></p>
+      </div>
 
         <div class="order-form__field">
-          <label class="order-form__label" for="order-topic">Тема заявки</label>
-          <select class="order-form__select" id="order-topic" name="topic" required>
+          <label class="order-form__label" for="order-topic">Тема заявки *</label>
+          <select class="order-form__select" id="order-topic" name="topic" required aria-describedby="order-topic-error">
             <option value="">Выберите тему</option>
             <option value="product">Заказ товара</option>
             <option value="consultation">Консультация</option>
             <option value="delivery">Доставка</option>
           </select>
-        </div>
+          <p class="form-error" id="order-topic-error" hidden></p>
+      </div>
 
         <div class="order-form__field order-form__field--wide">
           <label class="order-form__label" for="order-comment">Комментарий</label>
@@ -105,10 +111,10 @@
 
         <div class="order-form__field order-form__field--checkbox">
           <label class="order-form__label" for="order-agreement">
-            <input class="order-form__checkbox" id="order-agreement" name="agreement" type="checkbox" required>
-            Я согласен на обработку данных для ответа на заявку
-          </label>
-        </div>
+            <input class="order-form__checkbox" id="order-agreement" name="agreement" type="checkbox" required aria-describedby="order-agreement-error">
+            Я согласен на обработку данных для ответа на заявку *</label>
+          <p class="form-error" id="order-agreement-error" hidden></p>
+      </div>
 
         <p class="order-form__hint">Учебная форма: данные не отправляются на сервер.</p>
         <div class="order-form__actions">
@@ -116,7 +122,7 @@
           <button class="button button--primary" type="submit">Отправить заявку</button>
         </div>
       </form>
-      <p class="success-message" id="success-message" role="status" hidden>Заявка проверена. Это учебная демонстрация —
+      <p class="success-message" id="success-message" role="status" tabindex="-1" hidden>Заявка проверена. Это учебная демонстрация —
         данные не отправлены.</p>
     </section>
   </main>

@@ -98,21 +98,47 @@ const selectedProductInput = document.getElementById('selected-product');
 const orderTopicSelect = document.getElementById('order-topic');
 const successMessage = document.getElementById('success-message');
 
+let dialogOpener = null;
+function clearFieldError(field) {
+  field.removeAttribute('aria-invalid');
+  field.classList.remove(getFieldErrorClass(field));
+  const error = document.getElementById(`${field.id}-error`);
+  if (error) { error.textContent = ''; error.hidden = true; }
+}
 function clearErrors() {
-  Array.from(orderForm.elements).forEach((field) => {
-    if (!field.willValidate) return;
-    field.removeAttribute('aria-invalid');
-    field.classList.remove(getFieldErrorClass(field));
-  });
+  Array.from(orderForm.elements).forEach(clearFieldError);
 }
 function openOrder(name = '') {
+  dialogOpener = document.activeElement;
   orderForm.reset();
   clearErrors();
   successMessage.hidden = true;
   selectedProductInput.value = name;
   orderTopicSelect.value = name ? 'product' : 'consultation';
   orderDialog.showModal();
+  // Заголовок сообщает назначение окна; фон блокирует нативный dialog.
+  document.getElementById('order-dialog-title').focus();
 }
+orderDialog?.addEventListener('close', () => {
+  if (orderDialog.open) return;
+  if (successMessage.hidden) dialogOpener?.focus();
+  else successMessage.focus();
+});
+// Цикл Tab остаётся в окне, включая переход назад с заголовка.
+orderDialog?.addEventListener('keydown', (event) => {
+  if (event.key !== 'Tab') return;
+  const controls = Array.from(orderDialog.querySelectorAll('a[href], button, input, select, textarea, [tabindex="0"]'))
+    .filter((element) => !element.disabled && element.getClientRects().length);
+  const first = controls[0];
+  const last = controls[controls.length - 1];
+  if (event.shiftKey && (document.activeElement === first || document.activeElement === document.getElementById('order-dialog-title'))) {
+    event.preventDefault();
+    last?.focus();
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault();
+    first?.focus();
+  }
+});
 document.querySelectorAll('.product-card__button[data-product]').forEach((button) => {
   button.addEventListener('click', () => openOrder(button.dataset.product));
 });
@@ -134,22 +160,41 @@ function getFieldErrorClass(field) {
   if (field.tagName === 'TEXTAREA') return 'order-form__textarea--error';
   return 'order-form__input--error';
 }
+function getErrorMessage(field) {
+  if (field.validity.valueMissing) {
+    return field.type === 'checkbox' ? 'Подтвердите согласие, чтобы продолжить.' : 'Заполните обязательное поле.';
+  }
+  if (field.validity.typeMismatch) return 'Введите корректный e-mail, например name@example.ru.';
+  if (field.validity.patternMismatch) return 'Введите телефон в формате +7 (900) 000-00-00.';
+  if (field.validity.tooShort) return `Введите не менее ${field.minLength} символов.`;
+  return field.validationMessage;
+}
+function showFieldError(field) {
+  field.setAttribute('aria-invalid', 'true');
+  field.classList.add(getFieldErrorClass(field));
+  const error = document.getElementById(`${field.id}-error`);
+  if (error) { error.textContent = getErrorMessage(field); error.hidden = false; }
+}
+function updateFieldError(event) {
+  const field = event.target;
+  if (!field.hasAttribute('aria-invalid')) return;
+  if (field.validity.valid) clearFieldError(field);
+  else showFieldError(field);
+}
+orderForm?.addEventListener('input', updateFieldError);
+orderForm?.addEventListener('change', updateFieldError);
 orderForm?.addEventListener('submit', (event) => {
   event.preventDefault();
   successMessage.hidden = true;
   clearErrors();
-  if (!orderForm.checkValidity()) {
-    Array.from(orderForm.elements).forEach((field) => {
-      if (field.willValidate && !field.checkValidity()) {
-        field.setAttribute('aria-invalid', 'true');
-        field.classList.add(getFieldErrorClass(field));
-      }
-    });
-    orderForm.reportValidity();
+  const invalidFields = Array.from(orderForm.elements).filter((field) => field.willValidate && !field.validity.valid);
+  if (invalidFields.length) {
+    invalidFields.forEach(showFieldError);
+    invalidFields[0].focus();
     return;
   }
   successMessage.hidden = false;
   orderForm.reset();
-  orderDialog?.close();
-  if (!orderDialog) successMessage.scrollIntoView({ block: 'nearest' });
+  if (orderDialog) orderDialog.close();
+  else successMessage.focus();
 });
