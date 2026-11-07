@@ -1,0 +1,214 @@
+{
+  "date": "2026-11-07",
+  "results": [
+    {
+      "page": "index",
+      "width": 360,
+      "overflow": false,
+      "images": true,
+      "labels": true,
+      "aria": true
+    },
+    {
+      "page": "catalog",
+      "width": 360,
+      "overflow": false,
+      "images": true,
+      "labels": true,
+      "aria": true
+    },
+    {
+      "page": "product",
+      "width": 360,
+      "overflow": false,
+      "images": true,
+      "labels": true,
+      "aria": true
+    },
+    {
+      "page": "order",
+      "width": 360,
+      "overflow": false,
+      "images": true,
+      "labels": true,
+      "aria": true
+    },
+    {
+      "page": "contacts",
+      "width": 360,
+      "overflow": false,
+      "images": true,
+      "labels": true,
+      "aria": true
+    },
+    {
+      "page": "index",
+      "width": 430,
+      "overflow": false,
+      "images": true,
+      "labels": true,
+      "aria": true
+    },
+    {
+      "page": "catalog",
+      "width": 430,
+      "overflow": false,
+      "images": true,
+      "labels": true,
+      "aria": true
+    },
+    {
+      "page": "product",
+      "width": 430,
+      "overflow": false,
+      "images": true,
+      "labels": true,
+      "aria": true
+    },
+    {
+      "page": "order",
+      "width": 430,
+      "overflow": false,
+      "images": true,
+      "labels": true,
+      "aria": true
+    },
+    {
+      "page": "contacts",
+      "width": 430,
+      "overflow": false,
+      "images": true,
+      "labels": true,
+      "aria": true
+    },
+    {
+      "page": "index",
+      "width": 768,
+      "overflow": false,
+      "images": true,
+      "labels": true,
+      "aria": true
+    },
+    {
+      "page": "catalog",
+      "width": 768,
+      "overflow": false,
+      "images": true,
+      "labels": true,
+      "aria": true
+    },
+    {
+      "page": "product",
+      "width": 768,
+      "overflow": false,
+      "images": true,
+      "labels": true,
+      "aria": true
+    },
+    {
+      "page": "order",
+      "width": 768,
+      "overflow": false,
+      "images": true,
+      "labels": true,
+      "aria": true
+    },
+    {
+      "page": "contacts",
+      "width": 768,
+      "overflow": false,
+      "images": true,
+      "labels": true,
+      "aria": true
+    },
+    {
+      "page": "index",
+      "width": 1024,
+      "overflow": false,
+      "images": true,
+      "labels": true,
+      "aria": true
+    },
+    {
+      "page": "catalog",
+      "width": 1024,
+      "overflow": false,
+      "images": true,
+      "labels": true,
+      "aria": true
+    },
+    {
+      "page": "product",
+      "width": 1024,
+      "overflow": false,
+      "images": true,
+      "labels": true,
+      "aria": true
+    },
+    {
+      "page": "order",
+      "width": 1024,
+      "overflow": false,
+      "images": true,
+      "labels": true,
+      "aria": true
+    },
+    {
+      "page": "contacts",
+      "width": 1024,
+      "overflow": false,
+      "images": true,
+      "labels": true,
+      "aria": true
+    },
+    {
+      "page": "index",
+      "width": 1440,
+      "overflow": false,
+      "images": true,
+      "labels": true,
+      "aria": true
+    },
+    {
+      "page": "catalog",
+      "width": 1440,
+      "overflow": false,
+      "images": true,
+      "labels": true,
+      "aria": true
+    },
+    {
+      "page": "product",
+      "width": 1440,
+      "overflow": false,
+      "images": true,
+      "labels": true,
+      "aria": true
+    },
+    {
+      "page": "order",
+      "width": 1440,
+      "overflow": false,
+      "images": true,
+      "labels": true,
+      "aria": true
+    },
+    {
+      "page": "contacts",
+      "width": 1440,
+      "overflow": false,
+      "images": true,
+      "labels": true,
+      "aria": true
+    }
+  ],
+  "scenarios": [
+    "menu Escape and focus",
+    "filters/reset/search/sort",
+    "gallery buttons and arrows",
+    "dialog Escape and focus",
+    "order and feedback validation"
+  ],
+  "errors": [],
+  "missing": []
+}
