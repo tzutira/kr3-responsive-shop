@@ -87,8 +87,8 @@ if (productTitle) {
   document.getElementById('product-color').textContent = product.color;
   document.getElementById('product-category').textContent = product.category;
   const image = document.getElementById('product-image');
-  image.src = `images/archive-${product.id}-front-640.webp`;
-  image.srcset = `images/archive-${product.id}-front-320.webp 320w, images/archive-${product.id}-front-640.webp 640w`;
+  image.src = `images/archive-${product.id}-front-640.png`;
+  image.srcset = `images/archive-${product.id}-front-320.png 320w, images/archive-${product.id}-front-640.png 640w`;
   image.closest("[data-gallery]").dataset.gallery = product.id;
   image.closest("[data-gallery]").setAttribute("aria-label", `Ракурсы ${product.name}`);
   document.querySelectorAll("[data-spec]").forEach(el => el.textContent = product[el.dataset.spec]);
@@ -240,8 +240,8 @@ document.querySelectorAll('[data-gallery]').forEach(gallery => {
   function show(next) {
     index = (next + 3) % 3;
     const base = `images/archive-${id}-${angleFiles[index]}`;
-    image.src = `${base}-640.webp`;
-    image.srcset = `${base}-320.webp 320w, ${base}-640.webp 640w`;
+    image.src = `${base}-640.png`;
+    image.srcset = `${base}-320.png 320w, ${base}-640.png 640w`;
     image.alt = `${products[id].name} — вид ${angleNames[index].toLowerCase()}, студийная визуализация`;
     gallery.querySelector('.watch-gallery__status').textContent = `${angleNames[index]} · ${index + 1} / 3`;
   }
