@@ -1023,3 +1023,17 @@ input::placeholder, textarea::placeholder { color: var(--color-muted); opacity: 
 
 .product-card:hover, .product-card:focus-within { border-color: var(--color-primary); box-shadow: 0 0 18px rgb(215 215 218 / 16%); }
 .watch-gallery { border-radius: var(--radius-sm); overflow: hidden; }
+
+/* Светлая карточка и растянутая ссылка: кнопки остаются самостоятельными. */
+.product-card { background: #eeeeec; color: #18181a; border-color: #d4d4d1; color-scheme: light; }
+.product-card__title a, .product-card__details { color: #18181a; }
+.product-card__description { color: #505055; }
+.product-card__title a::after { content: ''; position: absolute; inset: 0; z-index: 1; border-radius: inherit; }
+.product-card__actions a, .product-card__actions button { position: relative; z-index: 2; }
+.product-card .button--primary { background: #18181a; color: #f3f3f1; }
+.product-card .button--primary:hover { background: #38383c; color: #fff; }
+.product-card:hover, .product-card:focus-within { border-color: #fff; box-shadow: 0 0 22px rgb(215 215 218 / 28%); }
+.watch-gallery__controls { z-index: 3; }
+.watch-gallery__arrow { display: grid; place-items: center; }
+.watch-gallery .watch-gallery__icon { width: 24px; height: 24px; aspect-ratio: auto; }
+.hero__eyebrow { text-transform: none; }
