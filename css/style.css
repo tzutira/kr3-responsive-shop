@@ -1040,3 +1040,6 @@ input::placeholder, textarea::placeholder { color: var(--color-muted); opacity: 
 
 .watch-gallery__arrow { color: #fff; }
 .watch-gallery__arrow:focus-visible { background: rgb(255 255 255 / 12%); }
+
+/* Галерея на странице товара сливается с фоном блока описания. */
+.product-detail__visual, .product-detail__visual .watch-gallery { background: var(--color-bg); }
