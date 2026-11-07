@@ -727,51 +727,9 @@ html {
   scroll-margin-top: 120px;
 }
 
-@media (max-width: 1000px) {
-  .site-header__inner {
-    flex-direction: column;
-    gap: 12px;
-  }
 
-  .catalog-layout .products-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
 
-@media (max-width: 680px) {
-  .site-header {
-    position: static;
-  }
 
-  .site-main {
-    padding: 16px;
-  }
-
-  .hero {
-    padding: 32px 20px;
-  }
-
-  .products-grid,
-  .catalog-layout .products-grid,
-  .info-grid,
-  .product-detail {
-    grid-template-columns: 1fr;
-  }
-
-  .catalog-layout {
-    grid-template-columns: 1fr;
-    grid-template-areas: "filters" "products";
-  }
-
-  .site-nav__link {
-    padding: 6px 8px;
-  }
-
-  .product-detail__visual {
-    min-height: 280px;
-    padding: 24px;
-  }
-}
 
 /* Согласованные фотографии коллекции. */
 .site-header__logo-image {
