@@ -20,7 +20,8 @@
     <div class="site-header__inner">
       <a class="site-header__logo" href="index.html" aria-label="NOIR — главная">NOIR</a>
 
-      <nav class="site-nav" aria-label="Основная навигация">
+      <button class="menu-toggle button button--secondary" type="button" aria-expanded="false" aria-controls="site-navigation" hidden>Меню <span aria-hidden="true">＋</span></button>
+      <nav class="site-nav" id="site-navigation" aria-label="Основная навигация">
         <ul class="site-nav__list">
           <li class="site-nav__item"><a class="site-nav__link" href="index.html">Главная</a></li>
           <li class="site-nav__item"><a class="site-nav__link site-nav__link--active" aria-current="page"
@@ -47,7 +48,8 @@
 
     <section class="catalog-layout" aria-labelledby="catalog-products-title">
       <aside class="catalog-filters">
-        <h2 class="catalog-filters__title">Фильтры</h2>
+<details class="filter-disclosure" open><summary>Подобрать часы <span aria-hidden="true">＋</span></summary>
+        <h2 class="catalog-filters__title">Фильтры</h2><label for="catalog-search">Найти модель</label><input class="catalog-filters__input" id="catalog-search" type="search" placeholder="Название или цвет">
 
         <form class="catalog-filters__form" action="#" method="get">
           <fieldset class="catalog-filters__group">
@@ -81,20 +83,23 @@
               placeholder="100000">
           </fieldset>
 
-          <p class="order-form__hint">Отбор товаров пока не подключён.</p>
-          <button class="button button--primary" type="submit" disabled>Применить</button>
-        </form>
+          <p class="order-form__hint">Выберите механизм и диапазон цены. Пустые поля не ограничивают поиск.</p>
+          <button class="button button--primary" type="submit">Применить</button>
+        <button class="button button--secondary" type="reset">Сбросить</button></form></details>
       </aside>
 
       <section class="catalog-layout__products">
         <h2 class="catalog-layout__title" id="catalog-products-title">Модели часов</h2>
 
-        <div class="products-grid">
-          <article class="product-card">
-            <a class="product-card__image-link" href="product.html?product=1" aria-label="Подробнее о NOIR Archive 01">
-              <img class="product-card__image" src="images/watch-480.svg"
-                alt="Временная иллюстрация модели NOIR Archive 01" width="480" height="600" loading="lazy">
-            </a>
+        <div class="catalog-toolbar"><p id="catalog-count" role="status">Найдено моделей: 6</p><div><label for="catalog-sort">Сортировка</label><select class="catalog-filters__input" id="catalog-sort"><option value="default">По коллекции</option><option value="asc">Сначала дешевле</option><option value="desc">Сначала дороже</option><option value="name">По названию</option></select></div></div>
+        <p id="catalog-empty" hidden>Модели не найдены. Измените фильтры или нажмите «Сбросить».</p><div class="products-grid">
+          <article class="product-card" data-product-id="1">
+            <div class="watch-gallery" data-gallery="1" role="group" aria-roledescription="карусель" aria-label="Ракурсы NOIR Archive 01">
+ <img class="product-card__image" src="images/archive-1-front-640.webp" srcset="images/archive-1-front-320.webp 320w, images/archive-1-front-640.webp 640w" sizes="(min-width: 900px) 480px, calc(100vw - 64px)" alt="NOIR Archive 01 — вид спереди, студийная визуализация" width="640" height="640" loading="lazy">
+ <div class="watch-gallery__controls"><button class="watch-gallery__arrow" type="button" data-step="-1" aria-label="Предыдущий ракурс">←</button>
+ <span class="watch-gallery__status" aria-live="polite" aria-atomic="true">Спереди · 1 / 3</span>
+ <button class="watch-gallery__arrow" type="button" data-step="1" aria-label="Следующий ракурс">→</button></div>
+ </div>
 
             <h3 class="product-card__title">
               <a href="product.html?product=1">NOIR Archive 01</a>
@@ -113,11 +118,13 @@
             </div>
           </article>
 
-          <article class="product-card">
-            <a class="product-card__image-link" href="product.html?product=2" aria-label="Подробнее о NOIR Archive 02">
-              <img class="product-card__image" src="images/watch-480.svg"
-                alt="Временная иллюстрация модели NOIR Archive 02" width="480" height="600" loading="lazy">
-            </a>
+          <article class="product-card" data-product-id="2">
+            <div class="watch-gallery" data-gallery="2" role="group" aria-roledescription="карусель" aria-label="Ракурсы NOIR Archive 02">
+ <img class="product-card__image" src="images/archive-2-front-640.webp" srcset="images/archive-2-front-320.webp 320w, images/archive-2-front-640.webp 640w" sizes="(min-width: 900px) 480px, calc(100vw - 64px)" alt="NOIR Archive 02 — вид спереди, студийная визуализация" width="640" height="640" loading="lazy">
+ <div class="watch-gallery__controls"><button class="watch-gallery__arrow" type="button" data-step="-1" aria-label="Предыдущий ракурс">←</button>
+ <span class="watch-gallery__status" aria-live="polite" aria-atomic="true">Спереди · 1 / 3</span>
+ <button class="watch-gallery__arrow" type="button" data-step="1" aria-label="Следующий ракурс">→</button></div>
+ </div>
 
             <h3 class="product-card__title">
               <a href="product.html?product=2">NOIR Archive 02</a>
@@ -136,11 +143,13 @@
             </div>
           </article>
 
-          <article class="product-card">
-            <a class="product-card__image-link" href="product.html?product=3" aria-label="Подробнее о NOIR Archive 03">
-              <img class="product-card__image" src="images/watch-480.svg"
-                alt="Временная иллюстрация модели NOIR Archive 03" width="480" height="600" loading="lazy">
-            </a>
+          <article class="product-card" data-product-id="3">
+            <div class="watch-gallery" data-gallery="3" role="group" aria-roledescription="карусель" aria-label="Ракурсы NOIR Archive 03">
+ <img class="product-card__image" src="images/archive-3-front-640.webp" srcset="images/archive-3-front-320.webp 320w, images/archive-3-front-640.webp 640w" sizes="(min-width: 900px) 480px, calc(100vw - 64px)" alt="NOIR Archive 03 — вид спереди, студийная визуализация" width="640" height="640" loading="lazy">
+ <div class="watch-gallery__controls"><button class="watch-gallery__arrow" type="button" data-step="-1" aria-label="Предыдущий ракурс">←</button>
+ <span class="watch-gallery__status" aria-live="polite" aria-atomic="true">Спереди · 1 / 3</span>
+ <button class="watch-gallery__arrow" type="button" data-step="1" aria-label="Следующий ракурс">→</button></div>
+ </div>
 
             <h3 class="product-card__title">
               <a href="product.html?product=3">NOIR Archive 03</a>
@@ -159,11 +168,13 @@
             </div>
           </article>
 
-          <article class="product-card">
-            <a class="product-card__image-link" href="product.html?product=4" aria-label="Подробнее о NOIR Archive 04">
-              <img class="product-card__image" src="images/watch-480.svg"
-                alt="Временная иллюстрация модели NOIR Archive 04" width="480" height="600" loading="lazy">
-            </a>
+          <article class="product-card" data-product-id="4">
+            <div class="watch-gallery" data-gallery="4" role="group" aria-roledescription="карусель" aria-label="Ракурсы NOIR Archive 04">
+ <img class="product-card__image" src="images/archive-4-front-640.webp" srcset="images/archive-4-front-320.webp 320w, images/archive-4-front-640.webp 640w" sizes="(min-width: 900px) 480px, calc(100vw - 64px)" alt="NOIR Archive 04 — вид спереди, студийная визуализация" width="640" height="640" loading="lazy">
+ <div class="watch-gallery__controls"><button class="watch-gallery__arrow" type="button" data-step="-1" aria-label="Предыдущий ракурс">←</button>
+ <span class="watch-gallery__status" aria-live="polite" aria-atomic="true">Спереди · 1 / 3</span>
+ <button class="watch-gallery__arrow" type="button" data-step="1" aria-label="Следующий ракурс">→</button></div>
+ </div>
 
             <h3 class="product-card__title">
               <a href="product.html?product=4">NOIR Archive 04</a>
@@ -182,11 +193,13 @@
             </div>
           </article>
 
-          <article class="product-card">
-            <a class="product-card__image-link" href="product.html?product=5" aria-label="Подробнее о NOIR Archive 05">
-              <img class="product-card__image" src="images/watch-480.svg"
-                alt="Временная иллюстрация модели NOIR Archive 05" width="480" height="600" loading="lazy">
-            </a>
+          <article class="product-card" data-product-id="5">
+            <div class="watch-gallery" data-gallery="5" role="group" aria-roledescription="карусель" aria-label="Ракурсы NOIR Archive 05">
+ <img class="product-card__image" src="images/archive-5-front-640.webp" srcset="images/archive-5-front-320.webp 320w, images/archive-5-front-640.webp 640w" sizes="(min-width: 900px) 480px, calc(100vw - 64px)" alt="NOIR Archive 05 — вид спереди, студийная визуализация" width="640" height="640" loading="lazy">
+ <div class="watch-gallery__controls"><button class="watch-gallery__arrow" type="button" data-step="-1" aria-label="Предыдущий ракурс">←</button>
+ <span class="watch-gallery__status" aria-live="polite" aria-atomic="true">Спереди · 1 / 3</span>
+ <button class="watch-gallery__arrow" type="button" data-step="1" aria-label="Следующий ракурс">→</button></div>
+ </div>
 
             <h3 class="product-card__title">
               <a href="product.html?product=5">NOIR Archive 05</a>
@@ -205,11 +218,13 @@
             </div>
           </article>
 
-          <article class="product-card">
-            <a class="product-card__image-link" href="product.html?product=6" aria-label="Подробнее о NOIR Archive 06">
-              <img class="product-card__image" src="images/watch-480.svg"
-                alt="Временная иллюстрация модели NOIR Archive 06" width="480" height="600" loading="lazy">
-            </a>
+          <article class="product-card" data-product-id="6">
+            <div class="watch-gallery" data-gallery="6" role="group" aria-roledescription="карусель" aria-label="Ракурсы NOIR Archive 06">
+ <img class="product-card__image" src="images/archive-6-front-640.webp" srcset="images/archive-6-front-320.webp 320w, images/archive-6-front-640.webp 640w" sizes="(min-width: 900px) 480px, calc(100vw - 64px)" alt="NOIR Archive 06 — вид спереди, студийная визуализация" width="640" height="640" loading="lazy">
+ <div class="watch-gallery__controls"><button class="watch-gallery__arrow" type="button" data-step="-1" aria-label="Предыдущий ракурс">←</button>
+ <span class="watch-gallery__status" aria-live="polite" aria-atomic="true">Спереди · 1 / 3</span>
+ <button class="watch-gallery__arrow" type="button" data-step="1" aria-label="Следующий ракурс">→</button></div>
+ </div>
 
             <h3 class="product-card__title">
               <a href="product.html?product=6">NOIR Archive 06</a>

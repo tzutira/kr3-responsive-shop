@@ -20,7 +20,8 @@
     <div class="site-header__inner">
       <a class="site-header__logo" href="index.html" aria-label="NOIR — главная">NOIR</a>
 
-      <nav class="site-nav" aria-label="Основная навигация">
+      <button class="menu-toggle button button--secondary" type="button" aria-expanded="false" aria-controls="site-navigation" hidden>Меню <span aria-hidden="true">＋</span></button>
+      <nav class="site-nav" id="site-navigation" aria-label="Основная навигация">
         <ul class="site-nav__list">
           <li class="site-nav__item"><a class="site-nav__link" href="index.html">Главная</a></li>
           <li class="site-nav__item"><a class="site-nav__link" href="catalog.html">Каталог</a></li>
@@ -46,8 +47,12 @@
 
     <section class="section product-detail">
       <div class="product-detail__visual">
-        <img class="product-detail__image" id="product-image" src="images/watch-480.svg"
-          alt="Временная иллюстрация модели NOIR Archive 01" width="480" height="600">
+        <div class="watch-gallery" data-gallery="1" role="group" aria-roledescription="карусель" aria-label="Ракурсы NOIR Archive 01">
+ <img class="product-detail__image" id="product-image" src="images/archive-1-front-640.webp" srcset="images/archive-1-front-320.webp 320w, images/archive-1-front-640.webp 640w" sizes="(min-width: 900px) 480px, calc(100vw - 64px)" alt="NOIR Archive 01 — вид спереди, студийная визуализация" width="640" height="640" loading="lazy">
+ <div class="watch-gallery__controls"><button class="watch-gallery__arrow" type="button" data-step="-1" aria-label="Предыдущий ракурс">←</button>
+ <span class="watch-gallery__status" aria-live="polite" aria-atomic="true">Спереди · 1 / 3</span>
+ <button class="watch-gallery__arrow" type="button" data-step="1" aria-label="Следующий ракурс">→</button></div>
+ </div>
       </div>
 
       <div class="product-detail__content">
@@ -75,7 +80,7 @@
 
         <p>
           Учебная модель. Характеристики и цена демонстрационные.
-          Вместо фотографии используется временная иллюстрация.
+          Фотографии созданы с помощью ИИ и иллюстрируют концепцию NOIR, а не товары Rolex или Jacob &amp; Co.
         </p>
       </div>
     </section>
@@ -85,6 +90,7 @@
         Характеристики
       </h2>
 
+      <dl class="spec-cards"><div><dt>Циферблат</dt><dd data-spec="color">Чёрный</dd></div><div><dt>Механизм</dt><dd data-spec="category">Ручной завод</dd></div><div><dt>Корпус</dt><dd>Нержавеющая сталь</dd></div><div><dt>Оформление</dt><dd>Через учебную форму заявки</dd></div></dl>
       <div class="table-scroll" role="region" aria-labelledby="specs-title" tabindex="0">
         <table class="product-table">
           <caption>Демонстрационные характеристики выбранных часов</caption>
