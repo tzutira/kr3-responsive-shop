@@ -267,7 +267,7 @@ Hero-блок — первый крупный блок страницы.
   margin-top: 0;
 }
 
-/* Каталог: фильтры слева, список товаров справа. */
+/* Каталог: фильтры слева, Модели часов справа. */
 .catalog-layout {
   max-width: var(--container-width);
   margin: 0 auto var(--space-xl);
@@ -969,4 +969,29 @@ html {
       #303034 0%,
       #171719 55%,
       #101012 100%);
+}
+
+/* Изображения коллекции NOIR */
+
+.product-card__image-link,
+.product-detail__visual {
+  background-color: var(--color-surface);
+}
+
+.product-card__image,
+.product-detail__image {
+  aspect-ratio: 4 / 5;
+  object-fit: contain;
+}
+
+.product-detail__content {
+  min-width: 0;
+}
+
+.product-detail__content > p {
+  color: var(--color-muted);
+}
+
+.product-detail__content > .product-detail__price {
+  color: var(--color-text);
 }
