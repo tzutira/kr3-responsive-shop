@@ -20,16 +20,15 @@
     <div class="site-header__inner">
       <a class="site-header__logo" href="index.html" aria-label="NOIR — главная">NOIR</a>
 
-      <nav class="site-nav" aria-label="Основная навигация">
+      <button class="menu-toggle button button--secondary" type="button" aria-expanded="false"
+        aria-controls="site-navigation" hidden>Меню <span aria-hidden="true">＋</span></button>
+      <nav class="site-nav" id="site-navigation" aria-label="Основная навигация">
         <ul class="site-nav__list">
           <li class="site-nav__item"><a class="site-nav__link" href="index.html">Главная</a></li>
           <li class="site-nav__item"><a class="site-nav__link" href="catalog.html">Каталог</a></li>
           <li class="site-nav__item"><a class="site-nav__link" href="order.html">Заявка</a></li>
           <li class="site-nav__item"><a class="site-nav__link site-nav__link--active" aria-current="page"
               href="contacts.html">Контакты</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="index.html#advantages">Преимущества</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="index.html#popular">Избранные модели</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="index.html#delivery">Доставка и возврат</a></li>
         </ul>
       </nav>
     </div>
@@ -53,14 +52,95 @@
     </section>
 
 
-    <section class="section" id="feedback">
+    <section class="section order-page" id="feedback">
       <h2 class="section__title">Обратная связь</h2>
-      <p>
-        Оставь вопрос о модели, механизме или доставке через форму заявки.
-      </p>
-      <a class="button button--primary" href="order.html">
-        Оставить заявку
-      </a>
+      <p>Задайте вопрос о модели, механизме или доставке.</p>
+      <form class="order-form" id="order-form" action="#" method="post" novalidate>
+        <p class="order-form__hint">Поля со звёздочкой (*) обязательны. Учебная форма не отправляет данные на сервер.
+        </p>
+        <div class="order-form__field">
+          <label class="order-form__label" for="selected-product">Товар</label>
+          <select class="order-form__select" id="selected-product" name="selected-product">
+            <option value="">Помощь с подбором часов</option>
+            <option>NOIR Archive 01</option>
+            <option>NOIR Archive 02</option>
+            <option>NOIR Archive 03</option>
+            <option>NOIR Archive 04</option>
+            <option>NOIR Archive 05</option>
+            <option>NOIR Archive 06</option>
+          </select>
+        </div>
+
+        <div class="order-form__field">
+          <label class="order-form__label" for="order-name">Имя *</label>
+          <input class="order-form__input" id="order-name" name="name" type="text" placeholder="Введите ваше имя"
+            minlength="2" autocomplete="given-name" required aria-describedby="order-name-error">
+          <p class="form-error" id="order-name-error" hidden></p>
+        </div>
+
+        <div class="order-form__field">
+          <label class="order-form__label" for="order-email">E-mail *</label>
+          <input class="order-form__input" id="order-email" name="email" type="email" placeholder="example@mail.ru"
+            autocomplete="email" required aria-describedby="order-email-error">
+          <p class="form-error" id="order-email-error" hidden></p>
+        </div>
+
+        <div class="order-form__field">
+          <label class="order-form__label" for="order-phone">Телефон *</label>
+          <input class="order-form__input" aria-describedby="order-phone-hint order-phone-error" id="order-phone"
+            name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+7 (900) 000-00-00"
+            pattern="^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$" required>
+          <small class="order-form__hint" id="order-phone-hint">Формат: +7 (900) 000-00-00</small>
+          <p class="form-error" id="order-phone-error" hidden></p>
+        </div>
+
+        <div class="order-form__field">
+          <label class="order-form__label" for="order-contact-method">
+            Предпочтительный способ связи *</label>
+
+          <select class="order-form__select" id="order-contact-method" name="contact-method" required
+            aria-describedby="order-contact-method-error">
+            <option value="">Выберите способ связи</option>
+            <option value="email">Электронная почта</option>
+            <option value="phone">Телефонный звонок</option>
+          </select>
+          <p class="form-error" id="order-contact-method-error" hidden></p>
+        </div>
+
+        <div class="order-form__field">
+          <label class="order-form__label" for="order-topic">Тема заявки *</label>
+          <select class="order-form__select" id="order-topic" name="topic" required
+            aria-describedby="order-topic-error">
+            <option value="">Выберите тему</option>
+            <option value="product">Заказ товара</option>
+            <option value="consultation">Консультация</option>
+            <option value="delivery">Доставка</option>
+          </select>
+          <p class="form-error" id="order-topic-error" hidden></p>
+        </div>
+
+        <div class="order-form__field order-form__field--wide">
+          <label class="order-form__label" for="order-comment">Комментарий</label>
+          <textarea class="order-form__textarea" id="order-comment" name="comment" rows="4"
+            placeholder="Укажите дополнительную информацию"></textarea>
+        </div>
+
+        <div class="order-form__field order-form__field--checkbox">
+          <label class="order-form__label" for="order-agreement">
+            <input class="order-form__checkbox" id="order-agreement" name="agreement" type="checkbox" required
+              aria-describedby="order-agreement-error">
+            Я согласен на обработку данных для ответа на заявку *</label>
+          <p class="form-error" id="order-agreement-error" hidden></p>
+        </div>
+
+        <p class="order-form__hint">Учебная форма: данные не отправляются на сервер.</p>
+        <div class="order-form__actions">
+          <a class="button button--secondary" href="catalog.html">Вернуться в каталог</a>
+          <button class="button button--primary" type="submit">Отправить заявку</button>
+        </div>
+      </form>
+      <div class="success-message" id="success-message" role="status" tabindex="-1" hidden>Спасибо! Учебная форма
+        успешно проверена. Данные на сервер не отправлялись.</div>
     </section>
   </main>
   <footer class="site-footer">

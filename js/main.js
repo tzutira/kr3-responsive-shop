@@ -16,7 +16,7 @@ const products = {
     id: "2",
     name: "NOIR Archive 02",
     brand: "NOIR",
-    description: "Серебристый циферблат и лаконичные часовые метки.",
+    description: "Открытый механизм, серебристый корпус и чёрный кожаный ремешок.",
     price: "84 900 ₽",
     color: "Серебристый",
     category: "Автоматический механизм",
@@ -28,7 +28,7 @@ const products = {
     id: "3",
     name: "NOIR Archive 03",
     brand: "NOIR",
-    description: "Светлый циферблат и строгие пропорции классических часов.",
+    description: "Прямоугольный корпус, светлый циферблат и римские цифры.",
     price: "52 000 ₽",
     color: "Белый",
     category: "Кварцевый механизм",
@@ -52,7 +52,7 @@ const products = {
     id: "5",
     name: "NOIR Archive 05",
     brand: "NOIR",
-    description: "Серебристые детали и эстетика механических часов прошлых десятилетий.",
+    description: "Скелетонизированный циферблат и серебристая архитектура механизма.",
     price: "73 500 ₽",
     color: "Серебристый",
     category: "Ручной завод",
@@ -87,8 +87,12 @@ if (productTitle) {
   document.getElementById('product-color').textContent = product.color;
   document.getElementById('product-category').textContent = product.category;
   const image = document.getElementById('product-image');
-  image.src = `images/${product.image}`;
-  image.alt = `Временная иллюстрация модели ${product.name}`;
+  image.src = `images/archive-${product.id}-front-640.png`;
+  image.srcset = `images/archive-${product.id}-front-320.png 320w, images/archive-${product.id}-front-640.png 640w`;
+  image.closest("[data-gallery]").dataset.gallery = product.id;
+  image.closest("[data-gallery]").setAttribute("aria-label", `Ракурсы ${product.name}`);
+  document.querySelectorAll("[data-spec]").forEach(el => el.textContent = product[el.dataset.spec]);
+  image.alt = `${product.name} — вид спереди, студийная визуализация`;
   document.getElementById('product-order-button').dataset.product = product.name;
 }
 
@@ -198,3 +202,118 @@ orderForm?.addEventListener('submit', (event) => {
   if (orderDialog) orderDialog.close();
   else successMessage.focus();
 });
+
+// Меню остаётся обычной навигацией без JS; на телефоне работает как disclosure.
+const menuButton = document.querySelector('.menu-toggle');
+const navigation = document.getElementById('site-navigation');
+const wideNavigation = matchMedia('(min-width: 1200px)');
+function setMenu(open, returnFocus = false) {
+  navigation.hidden = !open;
+  menuButton.setAttribute('aria-expanded', String(open));
+  menuButton.innerHTML = `${open ? 'Закрыть' : 'Меню'} <span aria-hidden="true">${open ? '−' : '＋'}</span>`;
+  if (returnFocus) menuButton.focus();
+}
+function syncMenu() {
+  const focusedLink = navigation.contains(document.activeElement);
+  menuButton.hidden = wideNavigation.matches;
+  setMenu(wideNavigation.matches, !wideNavigation.matches && focusedLink);
+}
+if (menuButton && navigation) {
+  syncMenu();
+  wideNavigation.addEventListener('change', syncMenu);
+  menuButton.addEventListener('click', () => setMenu(menuButton.getAttribute('aria-expanded') !== 'true'));
+  navigation.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && !wideNavigation.matches) setMenu(false, true);
+  });
+  navigation.addEventListener('click', event => {
+    if (event.target.closest('a') && !wideNavigation.matches) setMenu(false, true);
+  });
+}
+
+// Ручные карусели: без таймера, жестов с блокировкой вертикальной прокрутки и скрытых ссылок.
+const angleNames = ['Спереди', 'Сбоку', 'Сзади'];
+const angleFiles = ['front', 'side', 'back'];
+document.querySelectorAll('[data-gallery]').forEach(gallery => {
+  const id = gallery.dataset.gallery;
+  const image = gallery.querySelector('img');
+  let index = 0;
+  function show(next) {
+    index = (next + 3) % 3;
+    const base = `images/archive-${id}-${angleFiles[index]}`;
+    image.src = `${base}-640.png`;
+    image.srcset = `${base}-320.png 320w, ${base}-640.png 640w`;
+    image.alt = `${products[id].name} — вид ${angleNames[index].toLowerCase()}, студийная визуализация`;
+    gallery.querySelector('.watch-gallery__status').textContent = `${angleNames[index]} · ${index + 1} / 3`;
+  }
+  gallery.querySelectorAll('[data-step]').forEach(button => button.addEventListener('click', () => show(index + Number(button.dataset.step))));
+  gallery.addEventListener('keydown', event => {
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+      event.preventDefault();
+      show(index + (event.key === 'ArrowRight' ? 1 : -1));
+    }
+  });
+  let start = null;
+  gallery.addEventListener('pointerdown', event => {
+    if (event.pointerType === 'touch' && !event.target.closest('button')) start = { x: event.clientX, y: event.clientY };
+  });
+  gallery.addEventListener('pointerup', event => {
+    if (!start) return;
+    const dx = event.clientX - start.x, dy = event.clientY - start.y;
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) show(index + (dx < 0 ? 1 : -1));
+    start = null;
+  });
+  gallery.addEventListener('pointercancel', () => { start = null; });
+});
+
+const filters = document.querySelector('.catalog-filters__form');
+if (filters) {
+  const grid = document.querySelector('.catalog-layout .products-grid');
+  const cards = [...grid.querySelectorAll('[data-product-id]')];
+  const search = document.getElementById('catalog-search');
+  const sorting = document.getElementById('catalog-sort');
+  const mechanisms = { manual: 'Ручной завод', automatic: 'Автоматический механизм', quartz: 'Кварцевый механизм' };
+  const cost = item => Number(item.price.replace(/\D/g, ''));
+  function applyFilters() {
+    const selected = [...filters.querySelectorAll('[name="mechanism"]:checked')].map(el => mechanisms[el.value]);
+    const min = filters.elements['price-from'];
+    const max = filters.elements['price-to'];
+    max.setCustomValidity('');
+    if (!filters.reportValidity()) return;
+    if (min.value && max.value && Number(min.value) > Number(max.value)) {
+      max.setCustomValidity('Верхняя граница должна быть не меньше нижней.');
+      max.reportValidity(); return;
+    }
+    const query = search.value.trim().toLocaleLowerCase('ru');
+    let count = 0;
+    cards.sort((a, b) => {
+      const first = products[a.dataset.productId], second = products[b.dataset.productId];
+      if (sorting.value === 'asc') return cost(first) - cost(second);
+      if (sorting.value === 'desc') return cost(second) - cost(first);
+      if (sorting.value === 'name') return first.name.localeCompare(second.name, 'ru');
+      return Number(first.id) - Number(second.id);
+    }).forEach(card => {
+      const item = products[card.dataset.productId];
+      card.hidden = !((!selected.length || selected.includes(item.category)) &&
+        (!min.value || cost(item) >= Number(min.value)) && (!max.value || cost(item) <= Number(max.value)) &&
+        `${item.name} ${item.color} ${item.description}`.toLocaleLowerCase('ru').includes(query));
+      if (!card.hidden) count++;
+      grid.append(card);
+    });
+    document.getElementById('catalog-count').textContent = `Найдено моделей: ${count}`;
+    document.getElementById('catalog-empty').hidden = count !== 0;
+  }
+  filters.addEventListener('submit', event => { event.preventDefault(); applyFilters(); });
+  filters.addEventListener('input', () => filters.elements['price-to'].setCustomValidity(''));
+  search.addEventListener('input', applyFilters);
+  sorting.addEventListener('change', applyFilters);
+  filters.addEventListener('reset', () => {
+    search.value = ''; sorting.value = 'default';
+    filters.elements['price-to'].setCustomValidity('');
+    // Сброс нативных полей завершается после события reset.
+    setTimeout(applyFilters, 0);
+  });
+  const filterDetails = document.querySelector('.filter-disclosure');
+  filterDetails.open = matchMedia('(min-width: 1024px)').matches;
+}
+
+document.documentElement.classList.add("js-ready");

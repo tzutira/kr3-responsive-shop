@@ -216,3 +216,41 @@ img {
   .catalog-layout .products-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .back-to-top { position: fixed; right: 16px; bottom: 16px; margin: 0; }
 }
+
+/* Финальная адаптация №14: Mobile First. */
+.site-header__inner { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 12px; }
+.site-nav { flex-basis: 100%; }
+.site-nav__list { flex-direction: column; align-items: stretch; }
+.hero__image { aspect-ratio: 3 / 2; }
+.advantages { grid-template-columns: minmax(0, 1fr); }
+.product-detail__visual { display: block; }
+.product-detail__image { max-height: none; }
+.table-scroll { display: none; }
+.spec-cards { display: block; }
+.catalog-filters__form { gap: 16px; }
+@media (min-width: 768px) {
+ .advantages { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+ .table-scroll { display: block; }
+ .spec-cards { display: none; }
+}
+
+@media (min-width: 1024px) {
+ .catalog-layout { grid-template-columns: 240px minmax(0, 1fr); gap: 32px; }
+}
+@media (min-width: 1200px) {
+ .site-nav { flex-basis: auto; }
+ .site-nav__list { flex-direction: row; }
+ .site-header__inner { flex-wrap: nowrap; }
+}
+
+/* Увеличенный первый экран и более крупные пункты навигации. */
+.site-nav__link { min-height: 48px; padding: 12px 18px; font-size: 16px; }
+.menu-toggle { min-height: 48px; padding: 12px 18px; font-size: 16px; }
+.hero { width: min(100%, var(--container-width)); padding: 32px 0; }
+@media (min-width: 900px) {
+ .hero { grid-template-columns: minmax(0, .9fr) minmax(0, 1.2fr); min-height: 600px; padding: 36px 0; gap: 24px; }
+ .hero__image { aspect-ratio: 1.15; }
+}
+
+/* Общие боковые поля шапки, первого экрана и разделов. */
+.site-header { padding-inline: 16px; }
