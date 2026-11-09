@@ -8,7 +8,6 @@ const products = {
     price: "68 500 ₽",
     color: "Чёрный",
     category: "Ручной завод",
-    image: "watch-480.svg",
     badge: ""
   },
 
@@ -20,7 +19,6 @@ const products = {
     price: "84 900 ₽",
     color: "Серебристый",
     category: "Автоматический механизм",
-    image: "watch-480.svg",
     badge: ""
   },
 
@@ -32,7 +30,6 @@ const products = {
     price: "52 000 ₽",
     color: "Белый",
     category: "Кварцевый механизм",
-    image: "watch-480.svg",
     badge: ""
   },
 
@@ -44,7 +41,6 @@ const products = {
     price: "96 000 ₽",
     color: "Чёрный",
     category: "Автоматический механизм",
-    image: "watch-480.svg",
     badge: ""
   },
 
@@ -56,7 +52,6 @@ const products = {
     price: "73 500 ₽",
     color: "Серебристый",
     category: "Ручной завод",
-    image: "watch-480.svg",
     badge: ""
   },
 
@@ -68,7 +63,6 @@ const products = {
     price: "45 000 ₽",
     color: "Белый",
     category: "Кварцевый механизм",
-    image: "watch-480.svg",
     badge: ""
   }
 };
