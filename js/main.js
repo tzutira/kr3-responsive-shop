@@ -254,7 +254,7 @@ document.querySelectorAll('[data-gallery]').forEach(gallery => {
   });
   let start = null;
   gallery.addEventListener('pointerdown', event => {
-    if (event.pointerType === 'touch' && !event.target.closest('button')) start = {x:event.clientX, y:event.clientY};
+    if (event.pointerType === 'touch' && !event.target.closest('button')) start = { x: event.clientX, y: event.clientY };
   });
   gallery.addEventListener('pointerup', event => {
     if (!start) return;
@@ -271,7 +271,7 @@ if (filters) {
   const cards = [...grid.querySelectorAll('[data-product-id]')];
   const search = document.getElementById('catalog-search');
   const sorting = document.getElementById('catalog-sort');
-  const mechanisms = {manual:'Ручной завод', automatic:'Автоматический механизм', quartz:'Кварцевый механизм'};
+  const mechanisms = { manual: 'Ручной завод', automatic: 'Автоматический механизм', quartz: 'Кварцевый механизм' };
   const cost = item => Number(item.price.replace(/\D/g, ''));
   function applyFilters() {
     const selected = [...filters.querySelectorAll('[name="mechanism"]:checked')].map(el => mechanisms[el.value]);
@@ -285,12 +285,12 @@ if (filters) {
     }
     const query = search.value.trim().toLocaleLowerCase('ru');
     let count = 0;
-    cards.sort((a,b) => {
+    cards.sort((a, b) => {
       const first = products[a.dataset.productId], second = products[b.dataset.productId];
-      if (sorting.value === 'asc') return cost(first)-cost(second);
-      if (sorting.value === 'desc') return cost(second)-cost(first);
+      if (sorting.value === 'asc') return cost(first) - cost(second);
+      if (sorting.value === 'desc') return cost(second) - cost(first);
       if (sorting.value === 'name') return first.name.localeCompare(second.name, 'ru');
-      return Number(first.id)-Number(second.id);
+      return Number(first.id) - Number(second.id);
     }).forEach(card => {
       const item = products[card.dataset.productId];
       card.hidden = !((!selected.length || selected.includes(item.category)) &&
@@ -302,7 +302,7 @@ if (filters) {
     document.getElementById('catalog-count').textContent = `Найдено моделей: ${count}`;
     document.getElementById('catalog-empty').hidden = count !== 0;
   }
-  filters.addEventListener('submit', event => {event.preventDefault(); applyFilters();});
+  filters.addEventListener('submit', event => { event.preventDefault(); applyFilters(); });
   filters.addEventListener('input', () => filters.elements['price-to'].setCustomValidity(''));
   search.addEventListener('input', applyFilters);
   sorting.addEventListener('change', applyFilters);
